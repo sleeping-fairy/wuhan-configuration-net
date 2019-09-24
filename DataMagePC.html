@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资料管理（PC）</title>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/DataMagePC.css">
+</head>
+<body>
+  <!-- container区域 -->
+  <div class="container">
+    <!-- 头部区域 -->
+    <div class="header clearfix">
+      <h3>武汉市配网规划资料系统</h3>
+      <a href="javascript:;" class="ziliao">
+        <span class="glyphicon glyphicon-list-alt icon1"></span>
+        <span>资料管理</span>
+      </a>
+      <a href="javascript:;" class="xitong">
+        <span class="glyphicon glyphicon-asterisk icon2"></span>
+        <span>系统管理</span>
+      </a>
+      <a href="javascript:;" class="user">
+        欢迎您，<span>管理员</span>
+      </a>
+      <a href="javascript:;" class="exit">
+        <span class="glyphicon glyphicon-cog icon3"></span>
+      </a>
+    </div>
+
+    <!-- 中间区域 -->
+    <div class="center clearfix">
+      <!-- 左侧aside区域 -->
+      <div class="aside">
+        <div class="leibie">
+          资料类别
+        </div>
+      </div>
+
+      <!-- 右侧main区域 -->
+      <div class="main">
+        <div class="buttons">
+          <button class="btn btn-default navbar-btn" id="add">添加</button>
+          <button class="btn btn-default navbar-btn" id="addAll">批量添加</button>
+          <button class="btn btn-default navbar-btn" id="edit">编辑</button>
+          <button class="btn btn-default navbar-btn" id="del">删除</button>
+          <button class="btn btn-default navbar-btn" id="update">一键更新</button>
+        </div>
+
+        <table id="table1">
+          <thead>
+            <tr>
+              <td>
+                <input type="checkbox" οnclick="allChecked(this)" />全选
+              </td>
+              <td>序号</td>
+              <td>资料名称</td>
+              <td>适用地区</td>
+              <td>印发单位</td>
+              <td>最新更新时间</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="radio" οnclick="checked" />
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

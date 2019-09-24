@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>资料库(领导)</title>
+  <script src="./js/jquery.js"></script>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/DataBase.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+  <div class="container clearfix">
+    <!-- 头部区域 -->
+    <div class="header">
+
+        <!-- container区域 -->
+        <div class="container">
+          <!-- 头部区域 -->
+          <div class="header clearfix">
+            <h3>武汉市配网规划资料系统</h3>
+            <a href="javascript:;" class="user">
+              欢迎您，<span>王建平</span>
+            </a>
+            <a href="javascript:;" class="exit">
+              <span class="glyphicon glyphicon-cog icon3"></span>
+            </a>
+          </div>
+      
+          <!-- 中间区域 -->
+          <div class="center clearfix"  id="app">
+            <!-- 左侧aside区域 -->
+            <div class="aside">
+              <div class="leibie">
+                <span class="glyphicon glyphicon-triangle-bottom" id="icon4"></span> 资料类别
+              </div>
+              <div class="title" id="title">
+                <ul>
+                  <li><a href="javascript:;">全部</a></li>
+                  <li><a href="javascript:;" class="active">七图三表规划成果</a></li>
+                  <li><a href="javascript:;">四图两表（现状）</a></li>
+                  <li><a href="javascript:;">常用资料</a></li>
+                </ul>
+              </div>
+            </div>
+      
+            <!-- 右侧main区域 -->
+            <div class="main">
+      
+              <table border="1" id="table1">
+                <thead>
+                  <tr height="35">
+                    <td class="xuhao">序号</td>
+                    <td class="zl">资料名称</td>
+                    <td class="fj">附件名称</td>
+                    <td class="dq">地区</td>
+                    <td class=bb>版本号</td>
+                    <td class="ye">年度</td>
+                    <td class="dw">印发单位</td>
+                    <td class=time>更新时间</td>
+                    <td class="big">大小</td>
+                  </tr>
+
+                  <!-- <tr v-for="item in item">
+                      <td>序号</td>
+                      <td>资料名称</td>
+                      <td>附件名称</td>
+                      <td>地区</td>
+                      <td>版本号</td>
+                      <td>年度</td>
+                      <td>印发单位</td>
+                      <td>更新时间</td>
+                      <td>大小</td>
+                    </tr> -->
+
+
+
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <input type="text" id="search" class="zlmc" v-model="keywords">
+                    </td>
+                    <td>
+                      <select v-model="regions"  name="" id="region" v-model="keywords" @click="local">
+                        <option value="all" v-if="">全部</option>
+                        <option value="jx">江夏</option>
+                        <option value="hn">汉南</option>
+                        <option value="wc">武昌</option>
+                      </select>
+                    </td>
+                    <td></td>
+                    <td>
+                      <select name="year" id="year" > 
+                        <option value="allYear">全部</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select name="company" id="company">
+                        <option value="comAll">全部</option>
+                        <option value="szf">市政府</option>
+                        <option value="gdj">供电局</option>
+                        <option value="jyj">教育局</option>
+                        <option value="szf">市政府</option>
+                      </select>
+                    </td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+
+                  <tr v-for="item in search(keywords)" :key="item.number">
+                    <td>{{item.number}}</td>
+                    <td>
+                      <a href="javascript:;">{{item.name}}</a>
+                    </td>
+                    <td>{{item.fujian}}</td>
+                    <td>{{item.region}}</td>
+                    <td>{{item.vision}}</td>
+                    <td>{{item.year}}</td>
+                    <td>{{item.company}}</td>
+                    <td>{{item.upTime}}</td>
+                    <td>{{item.size}}</td>
+                  </tr>
+
+
+                  <!-- <tr>
+                    <td>1</td>
+                    <td>资料名称1</td>
+                    <td>xxxxxx.pdf</td>
+                    <td>汉南</td>
+                    <td>V3.0</td>
+                    <td>2019</td>
+                    <td>xxxxxx</td>
+                    <td>2019.07.05 16:59</td>
+                    <td>240M</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>资料名称2</td>
+                    <td>xxxxxx.pdf</td>
+                    <td>{{regions}}</td>
+                    <td>V2.0</td>
+                    <td>2019</td>
+                    <td>xxxxxx</td>
+                    <td>2019.07.06 16:59</td>
+                    <td>20M</td>
+                  </tr>
+                  <tr>
+                      <td>3</td>
+                      <td>资料名称3</td>
+                      <td>xxxxxx.pdf</td>
+                      <td>青山</td>
+                      <td>V1.0</td>
+                      <td>2018</td>
+                      <td>xxxxxx</td>
+                      <td>2019.07.03 16:59</td>
+                      <td>50M</td>
+                  </tr>
+                  <tr>
+                      <td>4</td>
+                      <td>资料名称4</td>
+                      <td>xxxxxx.pdf</td>
+                      <td>汉南</td>
+                      <td>V3.0</td>
+                      <td>2019</td>
+                      <td>xxxxxx</td>
+                      <td>2019.07.05 16:59</td>
+                      <td>240M</td>
+                  </tr>
+                  <tr>
+                      <td>5</td>
+                      <td>资料名称5</td>
+                      <td>xxxxxx.pdf</td>
+                      <td>武昌</td>
+                      <td>V2.0</td>
+                      <td>2019</td>
+                      <td>xxxxxx</td>
+                      <td>2019.07.05 16:59</td>
+                      <td>240M</td>
+                  </tr>
+                  <tr>
+                        <td>6</td>
+                        <td>资料名称6</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>黄陂</td>
+                        <td>V3.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                  </tr>
+                  <tr>
+                        <td>7</td>
+                        <td>资料名称7</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>江夏</td>
+                        <td>V3.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                  </tr>
+                  <tr>
+                      <td>8</td>
+                      <td>资料名称8</td>
+                      <td>xxxxxx.pdf</td>
+                      <td>汉南</td>
+                      <td>V3.0</td>
+                      <td>2019</td>
+                      <td>xxxxxx</td>
+                      <td>2019.07.05 16:59</td>
+                      <td>240M</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>资料名称9</td>
+                      <td>xxxxxx.pdf</td>
+                      <td>汉口</td>
+                      <td>V2.0</td>
+                      <td>2019</td>
+                      <td>xxxxxx</td>
+                      <td>2019.07.06 16:59</td>
+                      <td>20M</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>资料名称10</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>青山</td>
+                        <td>V1.0</td>
+                        <td>2018</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.03 16:59</td>
+                        <td>50M</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>资料名称11</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>汉南</td>
+                        <td>V3.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>资料名称12</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>武昌</td>
+                        <td>V2.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>资料名称12</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>武昌</td>
+                        <td>V2.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                    </tr><tr>
+                        <td>12</td>
+                        <td>资料名称12</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>武昌</td>
+                        <td>V2.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                    </tr><tr>
+                        <td>12</td>
+                        <td>资料名称12</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>武昌</td>
+                        <td>V2.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                    </tr><tr>
+                        <td>12</td>
+                        <td>资料名称12</td>
+                        <td>xxxxxx.pdf</td>
+                        <td>武昌</td>
+                        <td>V2.0</td>
+                        <td>2019</td>
+                        <td>xxxxxx</td>
+                        <td>2019.07.05 16:59</td>
+                        <td>240M</td>
+                    </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+      
+        </div>
+
+      
+  </div>
+  </div>
+</body>
+<script>
+  var vm = new  Vue ({
+    el: '#app',
+    data:{
+      regions:' ',
+      fujian:'',
+      keywords: '', // 搜索的关键字
+      list: [
+        {number: '1',
+        name: '系统资料1',
+        fujian: '33363.pdf',
+        region: '武昌',
+        vision: 'V3.0',
+        year: '2019',
+        company: '湖北华中电力',
+        upTime: '2019.09.19 6:16',
+        size: ' 20M'},
+
+        {number: '2',
+        name: '系统资料2',
+        fujian: '2222.pdf',
+        region: '江夏',
+        vision: 'V3.0',
+        year: '2019',
+        company: '湖北华中电力',
+        upTime: '2019.09.19 6:16',
+        size: ' 20M'},
+
+        {number: '3',
+        name: '系统资料3',
+        fujian: '22222.pdf',
+        region: '江夏',
+        vision: 'V3.0',
+        year: '2019',
+        company: '湖北华中电力',
+        upTime: '2019.09.19 6:16',
+        size: ' 20M'},
+
+        {number: '4',
+        name: '系统资料4',
+        fujian: '11111.pdf',
+        region: '江夏',
+        vision: 'V3.0',
+        year: '2019',
+        company: '湖北华中电力',
+        upTime: '2019.09.19 6:16',
+        size: ' 20M'},
+
+         {number: '5',
+        name: '系统资料1',
+        fujian: '5555.pdf',
+        region: '江夏',
+        vision: 'V3.0',
+        year: '2019',
+        company: '湖北华中电力',
+        upTime: '2019.09.19 6:16',
+        size: ' 20M'},
+      ]
+    },
+    methods: {
+      search(keywords) { // 根据关键字，进行数据的搜索
+   
+          return this.list.filter(item => {
+
+            if (item.fujian.includes(keywords)) {
+              return item
+            }
+          })
+        },
+      
+      local(keywords) { // 根据关键字，进行数据的搜索
+   
+       return this.list.filter(item => {
+         console.log(111);
+         
+         if (item.region.includes(keywords)) {
+           return item
+     }
+   })
+ },
+
+    },
+  })
+</script>
+<script src="./js/DataBase.js"></script>
+</html>
